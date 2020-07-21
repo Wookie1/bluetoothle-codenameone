@@ -18,7 +18,6 @@
  */
 
 #import "CDVCommandDelegateImpl.h"
-#import "CDVJSON_private.h"
 #import "CDVCommandQueue.h"
 #import "CDVPluginResult.h"
 #import "CDVViewController.h"
