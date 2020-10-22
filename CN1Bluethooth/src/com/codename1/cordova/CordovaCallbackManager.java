@@ -7,6 +7,7 @@ package com.codename1.cordova;
 
 import ca.weblite.codename1.json.JSONException;
 import ca.weblite.codename1.json.JSONObject;
+import com.codename1.ui.Display;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.util.Callback;
@@ -26,33 +27,40 @@ public class CordovaCallbackManager {
     }
 
     public static void onError(String action, String result){
-        try {
-            JSONObject json = new JSONObject(result);
-            CordovaCallback cb = (CordovaCallback)callbacks.get(action);
-            cb.onError(json);
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
+        Display.getInstance().callSerially(()->{
+            try {
+                JSONObject json = new JSONObject(result);
+                CordovaCallback cb = (CordovaCallback)callbacks.get(action);
+                cb.onError(json);
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     public static void onSuccess(String action, String result){
-        try {
-            JSONObject json = new JSONObject(result);
-            CordovaCallback cb = (CordovaCallback)callbacks.get(action);
-            cb.onSuccess(json);
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
+        Display.getInstance().callSerially(() -> {
+            try {
+                JSONObject json = new JSONObject(result);
+                CordovaCallback cb = (CordovaCallback)callbacks.get(action);
+                cb.onSuccess(json);
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     public static void sendResult(String action, String result){
-        try {
-            JSONObject json = new JSONObject(result);
-            CordovaCallback cb = (CordovaCallback)callbacks.get(action);
-            cb.sendResult(json);
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
+        Display.getInstance().callSerially(() -> {
+            try {
+                JSONObject json = new JSONObject(result);
+                CordovaCallback cb = (CordovaCallback)callbacks.get(action);
+                cb.sendResult(json);
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
     }
     
 }

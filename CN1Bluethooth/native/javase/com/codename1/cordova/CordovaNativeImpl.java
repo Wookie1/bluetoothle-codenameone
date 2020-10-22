@@ -25,6 +25,9 @@ public class CordovaNativeImpl implements com.codename1.cordova.CordovaNative{
                 if(!m.containsKey("ios.NSBluetoothPeripheralUsageDescription")) {
                     Display.getInstance().setProjectBuildHint("ios.NSBluetoothPeripheralUsageDescription", "Some functionality of the application requires Bluetooth functionality");
                 }
+                if(!m.containsKey("ios.NSBluetoothAlwaysUsageDescription")) {
+                    Display.getInstance().setProjectBuildHint("ios.NSBluetoothAlwaysUsageDescription", "Some functionality of the application requires Bluetooth functionality");
+                }
             }
         }
     }
