@@ -65,7 +65,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("initialize", j.toString(), callack);
         try {
-            JSONObject obj = callack.getResponse();
+            JSONObject obj = callack.getResponseAndWait(2000);
             if (obj != null) {
                 String status = (String) obj.get("status");
                 return status.equals("enabled");
@@ -383,7 +383,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("isInitialized", "", callack);
         try {
-            return callack.getResponse().getBoolean("isInitialized");
+            return callack.getResponseAndWait(500).getBoolean("isInitialized");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -394,7 +394,8 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("isEnabled", "", callack);
         try {
-            return callack.getResponse().getBoolean("isEnabled");
+            System.out.println("Waiting for response in isEnabled()");
+            return callack.getResponseAndWait(500).getBoolean("isEnabled");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -405,7 +406,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("isScanning", "", callack);
         try {
-            return callack.getResponse().getBoolean("isScanning");
+            return callack.getResponseAndWait(500).getBoolean("isScanning");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -420,7 +421,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("wasConnected", j.toString(), callack);
         try {
-            return callack.getResponse().getBoolean("wasConnected");
+            return callack.getResponseAndWait(500).getBoolean("wasConnected");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -435,7 +436,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("isConnected", j.toString(), callack);
         try {
-            return callack.getResponse().getBoolean("isConnected");
+            return callack.getResponseAndWait(500).getBoolean("isConnected");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -450,7 +451,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("isDiscovered", j.toString(), callack);
         try {
-            return callack.getResponse().getBoolean("isDiscovered");
+            return callack.getResponseAndWait(500).getBoolean("isDiscovered");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -467,7 +468,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("hasPermission", "", callack);
         try {
-            return callack.getResponse().getBoolean("hasPermission");
+            return callack.getResponseAndWait(500).getBoolean("hasPermission");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -484,7 +485,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("requestPermission", "", callack);
         try {
-            return callack.getResponse().getBoolean("requestPermission");
+            return callack.getResponseAndWait(500).getBoolean("requestPermission");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -501,7 +502,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("isLocationEnabled", "", callack);
         try {
-            return callack.getResponse().getBoolean("isLocationEnabled");
+            return callack.getResponseAndWait(500).getBoolean("isLocationEnabled");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -518,7 +519,7 @@ public class Bluetooth {
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("requestLocation", "", callack);
         try {
-            return callack.getResponse().getBoolean("requestLocation");
+            return callack.getResponseAndWait(500).getBoolean("requestLocation");
         } catch (JSONException ex) {
             ex.printStackTrace();
         }

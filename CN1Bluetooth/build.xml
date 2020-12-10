@@ -6,8 +6,8 @@
     -->
     
     
-<project name="CN1Bluethooth" default="default" basedir=".">
-    <description>Builds, tests, and runs the project CN1Bluethooth.</description>
+<project name="CN1Bluetooth" default="default" basedir=".">
+    <description>Builds, tests, and runs the project CN1Bluetooth.</description>
     <import file="nbproject/build-impl.xml"/>
     <property file="codenameone_settings.properties"/>
 
@@ -76,7 +76,7 @@
         <mkdir dir="dist" />
         <zip basedir="build/lib" compress="true" destfile="dist/${application.title}.cn1lib" />
         <copy file="dist/${application.title}.cn1lib" tofile="../BTDemo/lib/${application.title}.cn1lib"/>
-        <ant dir="../BTDemo" target="refresh-libs" inheritall="false"/>
+        <!--<ant dir="../BTDemo" target="refresh-libs-impl" inheritall="false"/>-->
     </target>
 
     <target name="buildNativeRIM">
