@@ -9,6 +9,7 @@ import ca.weblite.codename1.json.JSONException;
 import ca.weblite.codename1.json.JSONObject;
 import com.codename1.cordova.CordovaCallback;
 import com.codename1.cordova.Cordova;
+import com.codename1.ui.CN;
 import com.codename1.ui.events.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,6 +65,12 @@ public class Bluetooth {
         JSONObject j = new JSONObject(p);
         CordovaCallback callack = new CordovaCallback();
         plugin.execute("initialize", j.toString(), callack);
+        if ("ios".equalsIgnoreCase(CN.getPlatformName())) {
+            // On iOS, it seems that initialize doesn't return.
+            // Not sure why, but it seems to work fine in most cases without it.
+            // Just assume that it worked.
+            return true;
+        }
         try {
             JSONObject obj = callack.getResponseAndWait(2000);
             if (obj != null) {
