@@ -711,6 +711,7 @@ NSString *const operationWrite = @"write";
 
   //Create dictionary to hold connections and all their callbacks
   connections = [NSMutableDictionary dictionary];
+    [connections retain];
 }
 
 - (void)enable:(CDVInvokedUrlCommand *)command {
@@ -3599,6 +3600,14 @@ NSString *const operationWrite = @"write";
   }
 
   return propertiesObject;
+}
+
+-(void)dealloc {
+    if (connections != nil) {
+        [connections release];
+        connections = nil;
+    }
+    [super dealloc];
 }
 
 @end

@@ -21,12 +21,12 @@
 -(BOOL)execute:(NSString*)param param1:(NSString*)param1{
     
     NSLog(@"Cordova exec: param %@ param1 %@", param, param1);
-    NSData* data = [param1 dataUsingEncoding:NSUTF8StringEncoding];
     NSError *e;
     NSArray *array = nil;
     if (param1 == nil || [param1 length] == 0) {
         array = [NSArray array];
     } else {
+        NSData* data = [param1 dataUsingEncoding:NSUTF8StringEncoding];
         array = [NSArray arrayWithObjects:[NSJSONSerialization JSONObjectWithData:data options:nil error:&e], nil];
     }
     NSLog(@"Args %@", array);
